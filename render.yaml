@@ -1,0 +1,10 @@
+services:
+- type: web
+  name: youtube-audio-api
+  env: python
+  # This command installs Python packages and the system tool ffmpeg
+  buildCommand: |
+    pip install -r requirements.txt
+    apt-get update && apt-get install -y ffmpeg
+  # This command starts your server
+  startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
